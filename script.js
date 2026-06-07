@@ -4,8 +4,8 @@ const tenthsToggle = document.querySelector('#tenths-toggle');
 const hundredthsToggle = document.querySelector('#hundredths-toggle');
 const selectedValue = document.querySelector('#selected-value');
 
-const MIN_POSITION = 8;
-const MAX_POSITION = 92;
+const MIN_POSITION = 4;
+const MAX_POSITION = 96;
 const TOTAL_STEPS = 200;
 
 let selectedTickButton = null;

@@ -21,7 +21,7 @@ body {
 }
 
 .page-shell {
-  width: min(96vw, 1400px);
+  width: min(98vw, 1600px);
   min-height: 100vh;
   margin: 0 auto;
   padding: clamp(1rem, 3vw, 3rem);
@@ -124,8 +124,8 @@ h1 {
 
 .axis-line {
   position: absolute;
-  left: 2%;
-  right: 2%;
+  left: 0.75%;
+  right: 0.75%;
   top: 50%;
   height: 6px;
   transform: translateY(-50%);

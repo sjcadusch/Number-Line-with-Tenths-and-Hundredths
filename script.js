@@ -2,6 +2,8 @@ const numberLine = document.querySelector('#number-line');
 const startInput = document.querySelector('#start-number');
 const tenthsToggle = document.querySelector('#tenths-toggle');
 const hundredthsToggle = document.querySelector('#hundredths-toggle');
+const tenthLabelsToggle = document.querySelector('#tenth-labels-toggle');
+const tenthLabelsToggleLabel = document.querySelector('#tenth-labels-toggle-label');
 const selectedValue = document.querySelector('#selected-value');
 
 const MIN_POSITION = 4;
@@ -51,6 +53,13 @@ function renderNumberLine() {
   const start = getStartNumber();
   const showTenths = tenthsToggle.checked;
   const showHundredths = hundredthsToggle.checked;
+  const showTenthLabels = tenthLabelsToggle.checked;
+
+  // Show tenth labels toggle only when tenths are shown
+  tenthLabelsToggleLabel.style.display = showTenths ? 'flex' : 'none';
+  
+  // Disable tenth labels toggle if tenths are not shown
+  tenthLabelsToggle.disabled = !showTenths;
 
   numberLine.innerHTML = '<div class="axis-line" aria-hidden="true"></div>';
   selectedTickButton = null;
@@ -65,7 +74,17 @@ function renderNumberLine() {
     }
 
     if (!isMajor && showHundredths && showTenths && isTenth) {
-      numberLine.appendChild(makeTick(step, 'tenth', value));
+      const tick = makeTick(step, 'tenth', value);
+      
+      // Add label below tenth tick if enabled
+      if (showTenthLabels) {
+        const label = document.createElement('span');
+        label.className = 'tenth-label';
+        label.textContent = formatValue(value);
+        tick.appendChild(label);
+      }
+      
+      numberLine.appendChild(tick);
       continue;
     }
 
@@ -77,7 +96,17 @@ function renderNumberLine() {
       tick.appendChild(label);
       numberLine.appendChild(tick);
     } else if (showTenths && isTenth) {
-      numberLine.appendChild(makeTick(step, 'tenth', value));
+      const tick = makeTick(step, 'tenth', value);
+      
+      // Add label below tenth tick if enabled
+      if (showTenthLabels) {
+        const label = document.createElement('span');
+        label.className = 'tenth-label';
+        label.textContent = formatValue(value);
+        tick.appendChild(label);
+      }
+      
+      numberLine.appendChild(tick);
     } else if (showHundredths) {
       numberLine.appendChild(makeTick(step, 'hundredth', value));
     }
@@ -103,5 +132,6 @@ startInput.addEventListener('input', () => {
 
 tenthsToggle.addEventListener('change', renderNumberLine);
 hundredthsToggle.addEventListener('change', renderNumberLine);
+tenthLabelsToggle.addEventListener('change', renderNumberLine);
 
 renderNumberLine();

@@ -105,6 +105,16 @@ h1 {
   accent-color: var(--accent);
 }
 
+.toggle input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toggle:has(input:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .number-line-card {
   width: 100%;
   min-height: clamp(190px, 26vw, 330px);
@@ -214,6 +224,17 @@ h1 {
   white-space: nowrap;
 }
 
+.tenth-label {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 48px);
+  transform: translateX(-50%);
+  font-size: clamp(0.9rem, 1.8vw, 1.5rem);
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--muted);
+}
+
 .selection-panel {
   width: fit-content;
   max-width: 100%;
@@ -251,5 +272,9 @@ h1 {
 
   .tick-label {
     top: calc(50% + 62px);
+  }
+
+  .tenth-label {
+    top: calc(50% + 42px);
   }
 }
